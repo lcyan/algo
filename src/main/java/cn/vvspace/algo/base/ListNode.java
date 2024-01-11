@@ -38,4 +38,9 @@ public final class ListNode {
 
         return dummy.next;
     }
+
+    @Override
+    public String toString() {
+        return "val = " + this.val;
+    }
 }

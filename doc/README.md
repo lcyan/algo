@@ -1,0 +1,23 @@
+## 滑动算法框架
+
+```java
+/* 滑动窗口算法框架 */
+void slidingWindow(string s, string t) {
+    unordered_map<char, int> window;
+
+    int left = 0, right = 0;
+    while (right < s.size()) {
+        char c = s[right];
+        // 右移（增大）窗口
+        right++;
+        // 进行窗口内数据的一系列更新
+
+        while (window needs shrink){
+            char d = s[left];
+            // 左移（缩小）窗口
+            left++;
+            // 进行窗口内数据的一系列更新
+        }
+    }
+}
+```

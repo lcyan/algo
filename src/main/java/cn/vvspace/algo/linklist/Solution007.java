@@ -1,4 +1,4 @@
-package cn.vvspace.algo;
+package cn.vvspace.algo.linklist;
 
 
 import cn.vvspace.algo.base.ListNode;
@@ -20,7 +20,7 @@ import cn.vvspace.algo.base.ListNode;
 public class Solution007 {
 
     public static void main(String[] args) {
-        ListNode list = cn.vvspace.algo.base.ListNode.of(3, 2, 0, -4);
+        ListNode list = ListNode.of(3, 2, 0, -4);
         ListNode listNode = hasCycle(list);
         System.out.println(listNode);
     }

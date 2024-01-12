@@ -1,4 +1,4 @@
-package cn.vvspace.algo;
+package cn.vvspace.algo.linklist;
 
 
 import cn.vvspace.algo.base.ListNode;

@@ -1,4 +1,4 @@
-package cn.vvspace.algo;
+package cn.vvspace.algo.linklist;
 
 
 import cn.vvspace.algo.base.ListNode;
@@ -21,7 +21,9 @@ public class Solution008 {
         ListNode listA = ListNode.of(4, 1, 8, 4, 5);
         ListNode listB = ListNode.of(5, 6, 1, 8, 4, 5);
         ListNode listNode = getIntersectionNode(listA, listB);
+        ListNode listNode2 = getIntersectionNodeV2(listA, listB);
         System.out.println(listNode);
+        System.out.println(listNode2);
     }
 
     public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
@@ -53,4 +55,30 @@ public class Solution008 {
 
         return pA;
     }
+
+    // a -> b -> c -> d -> e
+    // a -> b ->d -> e
+
+    public static ListNode getIntersectionNodeV2(ListNode headA, ListNode headB) {
+        ListNode p1 = headA, p2 = headB;
+
+        while (p1 != p2) {
+            if (p1 != null) {
+                p1 = p1.next;
+            } else {
+                p1 = headB;
+            }
+
+            if (p2 != null) {
+                p2 = p2.next;
+            } else {
+                p2 = headA;
+            }
+        }
+
+        return p1;
+    }
 }
+
+
+

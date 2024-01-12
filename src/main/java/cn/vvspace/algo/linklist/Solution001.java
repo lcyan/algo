@@ -1,4 +1,4 @@
-package cn.vvspace.algo;
+package cn.vvspace.algo.linklist;
 
 
 import cn.vvspace.algo.base.ListNode;
@@ -43,7 +43,7 @@ public class Solution001 {
             p1 = p1.next;
         }
 
-        // p1, p2同时走n-k步
+        // p1, p2同时走n-k+1步
         while (p1 != null) {
             p1 = p1.next;
             p2 = p2.next;

@@ -1,4 +1,4 @@
-package cn.vvspace.algo;
+package cn.vvspace.algo.linklist;
 
 
 import cn.vvspace.algo.base.ListNode;
@@ -35,6 +35,7 @@ public class Solution003 {
                 pR = pR.next;
             }
 
+            // 断开列表
             ListNode tmp = p.next;
             p.next = null;
             p = tmp;

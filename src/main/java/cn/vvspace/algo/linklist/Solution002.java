@@ -1,4 +1,4 @@
-package cn.vvspace.algo;
+package cn.vvspace.algo.linklist;
 
 
 import cn.vvspace.algo.base.ListNode;
@@ -27,9 +27,9 @@ public class Solution002 {
 
         PriorityQueue<ListNode> pq = new PriorityQueue<>(len, Comparator.comparingInt(a -> a.val));
         // 构建优先队列
-        for (ListNode listNode : lists) {
-            if (listNode != null) {
-                pq.add(listNode);
+        for (ListNode head : lists) {
+            if (head != null) {
+                pq.add(head);
             }
         }
 
@@ -37,11 +37,11 @@ public class Solution002 {
         ListNode p = dummy;
         while (!pq.isEmpty()) {
             // 获取最小元素
-            ListNode listNode = pq.poll();
-            p.next = listNode;
+            ListNode node = pq.poll();
+            p.next = node;
 
-            if (listNode.next != null) {
-                pq.add(listNode.next);
+            if (node.next != null) {
+                pq.add(node.next);
             }
 
             p = p.next;

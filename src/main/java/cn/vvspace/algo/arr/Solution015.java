@@ -20,7 +20,7 @@ public class Solution015 {
 
 
     public static boolean isPalindrome(String s) {
-        if (s == null) {
+        if (s == null || s.isEmpty()) {
             return false;
         }
 

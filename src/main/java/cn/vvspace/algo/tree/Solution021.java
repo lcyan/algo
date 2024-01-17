@@ -13,7 +13,6 @@ import cn.vvspace.algo.base.TreeNode;
  */
 public class Solution021 {
 
-    private int maxDiameter = 0;
 
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1, //
@@ -26,25 +25,11 @@ public class Solution021 {
         System.out.println(solution021.diameterOfBinaryTree(root));
     }
 
+    private int maxDiameter = 0;
 
     public int diameterOfBinaryTree(TreeNode root) {
-        traverse(root);
+        maxDepth(root);
         return maxDiameter;
-    }
-
-
-    public void traverse(TreeNode root) {
-        if (root == null) {
-            return;
-        }
-
-        int leftMax = maxDepth(root.left);
-        int rightMax = maxDepth(root.right);
-
-        maxDiameter = Math.max(maxDiameter, leftMax + rightMax);
-
-        traverse(root.left);
-        traverse(root.right);
     }
 
     private int maxDepth(TreeNode root) {
@@ -54,7 +39,11 @@ public class Solution021 {
 
         int leftMax = maxDepth(root.left);
         int rightMax = maxDepth(root.right);
-        return Math.max(leftMax, rightMax) + 1;
+
+        int currMaxDiameter = leftMax + rightMax;
+        maxDiameter = Math.max(maxDiameter, currMaxDiameter);
+
+        return 1 + Math.max(leftMax, rightMax);
     }
 
 }

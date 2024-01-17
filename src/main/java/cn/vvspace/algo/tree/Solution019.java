@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * <a href="">前序遍历</a>
  * <p/>
- * <img src="https://pic5.58cdn.com.cn/nowater/webim/big/n_v2fc73f6be2ae242279a2a0e9d6fb4a187.png"/>
+ * <img src="D:/code/algo/assets/tree.png"/>
  */
 public class Solution019 {
 

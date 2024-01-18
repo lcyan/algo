@@ -42,6 +42,7 @@ public class Solution025 {
                 TreeNode node = q.poll();
                 System.out.println(node);
                 // 将下一层节点放入队列
+                assert node != null;
                 if (node.left != null) {
                     q.offer(node.left);
                 }

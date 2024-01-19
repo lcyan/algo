@@ -33,12 +33,31 @@ public class Solution028 {
      *
      * @param coins  表示不同面额的硬币
      * @param amount 总金额
-     * @return
+     * @return 可以凑成总金额所需的 最少的硬币个数
      */
     public int coinChange(int[] coins, int amount) {
         memo = new int[amount + 1];
         Arrays.fill(memo, Integer.MIN_VALUE);
-        return dpV2(coins, amount);
+        return dpV3(coins, amount);
+    }
+
+    // 迭代解法
+    private int dpV3(int[] coins, int amount) {
+        int[] dp = new int[amount + 1];
+        int initVal = amount + 1; // 不能定义为Integer.MAX_VALUE 下面的代码1 + dp[i - coin]会越界
+        Arrays.fill(dp, initVal);
+        dp[0] = 0;
+
+        for (int i = 0; i < dp.length; i++) {
+            for (int coin : coins) {
+                if (i - coin < 0) {
+                    continue;
+                }
+                dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
+            }
+        }
+        return (dp[amount] == initVal) ? -1 : dp[amount];
+
     }
 
     // 定义：要凑出金额 n，至少要 dp(coins, n) 个硬币
@@ -46,6 +65,7 @@ public class Solution028 {
         // base case
         if (amount == 0) return 0;
         if (amount < 0) return -1;
+
 
         // 查备忘录，防止重复计算
         if (memo[amount] != Integer.MIN_VALUE) {
@@ -64,7 +84,7 @@ public class Solution028 {
         }
 
         // 把计算结果存入备忘录
-        memo[amount] = res == Integer.MAX_VALUE ? -1 : res;
+        memo[amount] = (res == Integer.MAX_VALUE ? -1 : res);
         return memo[amount];
     }
 

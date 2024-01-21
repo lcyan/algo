@@ -1,5 +1,7 @@
 target/
 
+*.drawio.bkp
+
 ### IntelliJ IDEA ###
 .idea
 *.iws

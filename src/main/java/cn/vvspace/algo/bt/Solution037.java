@@ -37,7 +37,7 @@ public class Solution037 {
     public List<List<Integer>> permuteUnique(int[] nums) {
         boolean[] used = new boolean[nums.length + 1];
         Arrays.sort(nums);
-        backtrack(nums, used);
+        backtrackV2(nums, used);
         return res;
     }
 
@@ -63,6 +63,35 @@ public class Solution037 {
             track.add(nums[i]);
             used[i] = true;
             backtrack(nums, used);
+            track.removeLast();
+            used[i] = false;
+        }
+    }
+
+    private void backtrackV2(int[] nums, boolean[] used) {
+        if (track.size() == nums.length) {
+            res.add(new LinkedList<>(track));
+            return;
+        }
+
+        // 记录之前树枝上元素的值
+        // 题目说 -10 <= nums[i] <= 10，所以初始化为特殊值
+        int prevNum = -666;
+        for (int i = 0; i < nums.length; i++) {
+
+            if (used[i]) {
+                continue;
+            }
+
+            if (prevNum == nums[i]) {
+                continue;
+            }
+
+            track.add(nums[i]);
+            used[i] = true;
+            // 记录这条树枝上的值
+            prevNum = nums[i];
+            backtrackV2(nums, used);
             track.removeLast();
             used[i] = false;
         }

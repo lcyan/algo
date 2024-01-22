@@ -27,7 +27,7 @@ public class Solution033 {
     private final Deque<Integer> track = new LinkedList<>();
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1, 2, 3};
+        int[] nums = new int[]{1, 2, 3, 4};
         Solution033 solution033 = new Solution033();
         System.out.println(solution033.subsets(nums));
     }
@@ -37,11 +37,16 @@ public class Solution033 {
         return res;
     }
 
+    /* 如果把根节点作为第 0 层，将每个节点和根节点之间树枝上的元素作为该节点的值，那么第 n 层的所有节点就是大小为 n 的所有子集。 */
     private void backtrack(int[] nums, int start) {
         res.add(new LinkedList<>(track));
+        // 通过保证元素之间的相对顺序不变来防止出现重复的子集。
         for (int i = start; i < nums.length; i++) {
+            // 做选择
             track.add(nums[i]);
+            // 通过 start 参数控制树枝的遍历，避免产生重复的子集
             backtrack(nums, i + 1);
+            // 撤销选择
             track.removeLast();
         }
     }

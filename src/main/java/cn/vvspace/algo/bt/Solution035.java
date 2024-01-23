@@ -47,6 +47,7 @@ public class Solution035 {
         res.add(new LinkedList<>(track));
 
         for (int i = start; i < nums.length; i++) {
+            // 剪枝逻辑，跳过值相同的相邻树枝
             if (i > start && nums[i] == nums[i - 1]) {
                 continue;
             }

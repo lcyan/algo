@@ -21,6 +21,8 @@ import java.util.List;
  * <p>
  * 输入：nums = [1]
  * 输出：[[1]]
+ * <p>
+ * 排列（元素无重不可复选）
  */
 public class Solution030 {
 

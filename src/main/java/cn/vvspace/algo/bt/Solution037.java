@@ -24,6 +24,8 @@ import java.util.List;
  * <p>
  * 输入：nums = [1,2,3]
  * 输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+ * <p>
+ * 排列（元素可重不可复选）
  */
 public class Solution037 {
 
@@ -39,7 +41,7 @@ public class Solution037 {
     public List<List<Integer>> permuteUnique(int[] nums) {
         boolean[] used = new boolean[nums.length + 1];
         Arrays.sort(nums);
-        backtrackV2(nums, used);
+        backtrack(nums, used);
         return res;
     }
 

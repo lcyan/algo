@@ -28,6 +28,8 @@ import java.util.List;
  * <p>
  * 输入：n = 1, k = 1
  * 输出：[[1]]
+ * <p>
+ * 组合（元素无重不可复选）
  */
 public class Solution034 {
 

@@ -64,6 +64,7 @@ public class Solution036 {
 
         for (int i = start; i < candidates.length; i++) {
             int item = candidates[i];
+            // 剪枝逻辑，值相同的树枝，只遍历第一条
             if (i > start && item == candidates[i - 1]) {
                 continue;
             }

@@ -23,6 +23,8 @@ import java.util.List;
  * <p>
  * 输入：nums = [0]
  * 输出：[[],[0]]
+ * <p>
+ * 子集/组合（元素可重不可复选）
  */
 public class Solution035 {
 

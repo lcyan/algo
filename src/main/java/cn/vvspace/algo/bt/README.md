@@ -63,3 +63,35 @@ def backtrack(...):
         backtrack(...)
         撤销选择
 ```
+
+### 无重组合算法框架
+
+```java
+// 无重组合的回溯算法框架
+void backtrack(int[] nums, int start) {
+    for (int i = start; i < nums.length; i++) {
+        // ...
+        // 递归遍历下一层回溯树，注意参数
+        backtrack(nums, i + 1);
+        // ...
+    }
+}
+```
+> 这个 i 从 start 开始，那么下一层回溯树就是从 start + 1 开始，从而保证 nums[start] 这个元素不会被重复使用：
+
+<img src="https://cdn.jsdelivr.net/gh/lcyan/algo/assets/无重组合的回溯树.png"  alt="无重组合算法框架"/>
+
+> 那么反过来，如果我想让每个元素被重复使用，我只要把 i + 1 改成 i 即可：
+
+```java
+// 可重组合的回溯算法框架
+void backtrack(int[] nums, int start) {
+    for (int i = start; i < nums.length; i++) {
+        // ...
+        // 递归遍历下一层回溯树，注意参数
+        backtrack(nums, i);
+        // ...
+    }
+}
+```
+

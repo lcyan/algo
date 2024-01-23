@@ -20,6 +20,8 @@ import java.util.List;
  * <p>
  * 输入：nums = [1]
  * 输出：[[1]]
+ * <p>
+ * 排列（元素无重不可复选）
  */
 public class Solution029 {
 
@@ -54,10 +56,10 @@ public class Solution029 {
 
         for (int i = 0; i < nums.length; i++) {
             // 排除不合法的选择
-            if (used[i]) {
-                // nums[i] 已经在 track 中，跳过
-                continue;
-            }
+//            if (used[i]) {
+//                // nums[i] 已经在 track 中，跳过
+//                continue;
+//            }
             // 做选择
             track.add(nums[i]);
             used[i] = true;

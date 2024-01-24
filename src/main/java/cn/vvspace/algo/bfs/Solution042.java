@@ -72,9 +72,48 @@ public class Solution042 {
         Set<String> deadendsSet = new HashSet<>(Arrays.asList(deadends));
         // 记录已经穷举过的密码，防止走回头路
         Set<String> visited = new HashSet<>();
-        return bfs(target, deadendsSet, visited);
+        return bfsV2(target, deadendsSet, visited);
     }
 
+    // 双写bfs
+    private int bfsV2(String target, Set<String> deadendsSet, Set<String> visited) {
+        Set<String> q1 = new HashSet<>();
+        Set<String> q2 = new HashSet<>();
+        q1.add("0000");
+        q2.add(target);
+        visited.add("0000");
+        int step = 0;
+
+        while (!q1.isEmpty() && !q2.isEmpty()) {
+            // 哈希集合在遍历的过程中不能修改，用 temp 存储扩散结果
+            Set<String> temp = new HashSet<>();
+
+            /* 将 q1 中的所有节点向周围扩散 */
+            for (String cur : q1) {
+                /* 判断是否到达终点 */
+                if (deadendsSet.contains(cur)) continue;
+                if (q2.contains(cur)) return step;
+
+                visited.add(cur);
+
+                /* 将一个节点的未遍历相邻节点加入集合 */
+                for (int j = 0; j < 4; j++) {
+                    String up = plusOne(cur, j);
+                    if (!visited.contains(up)) temp.add(up);
+                    String down = minusOne(cur, j);
+                    if (!visited.contains(down)) temp.add(down);
+                }
+            }
+
+
+            step++;
+            // temp 相当于 q1
+            // 这里交换 q1 q2，下一轮 while 就是扩散 q2
+            q1 = q2;
+            q2 = temp;
+        }
+        return -1;
+    }
     private int bfs(String target, Set<String> deadendsSet, Set<String> visited) {
         Queue<String> q = new LinkedList<>();
         q.offer("0000");
@@ -87,7 +126,6 @@ public class Solution042 {
             for (int i = 0; i < sz; i++) {
                 String cur = q.poll();
                 assert cur != null;
-                System.out.println(cur);
                 if (deadendsSet.contains(cur)) {
                     continue;
                 }

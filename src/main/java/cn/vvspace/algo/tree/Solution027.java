@@ -14,7 +14,6 @@ import java.util.Queue;
  */
 public class Solution027 {
 
-
     private int count;
 
     public static void main(String[] args) {
@@ -51,6 +50,7 @@ public class Solution027 {
 
             for (int k = 0; k < sz; k++) {
                 int[] cur = q.poll();
+                assert cur != null;
                 int x = cur[0], y = cur[1];
 
                 // 上

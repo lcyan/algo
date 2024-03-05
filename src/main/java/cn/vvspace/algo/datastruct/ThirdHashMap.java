@@ -3,6 +3,23 @@ package cn.vvspace.algo.datastruct;
 @SuppressWarnings("unchecked")
 public class ThirdHashMap<K, V> {
 
+    public V get(K key) {
+        int hash = hash(key);
+        Node<K, V> node = bukets[getIndexOf(hash, bukets.length)];
+        while (node != null) {
+            if (hash == node.hash && (key == node.key || key.equals(node.key))) {
+                return node.value;
+            }
+            node = node.next;
+        }
+        return null;
+    }
+
+    private int getIndexOf(int hash, int length) {
+        int index = hash % length;
+        return Math.abs(index);
+    }
+
     final int DEFAULT_CAPACITY = 16;
     final float LOAD_FACTOR = 0.75f;
     Node<K, V>[] bukets;
@@ -22,18 +39,6 @@ public class ThirdHashMap<K, V> {
         return size;
     }
 
-    public V get(K key) {
-        int hash = hash(key);
-        Node<K, V> node = bukets[hash % bukets.length];
-        while (node != null) {
-            if (hash == node.hash && (key == node.key || key.equals(node.key))) {
-                return node.value;
-            }
-            node = node.next;
-        }
-        return null;
-    }
-
     public void put(K key, V value) {
         if (size >= bukets.length * LOAD_FACTOR) {
             resize();
@@ -42,7 +47,7 @@ public class ThirdHashMap<K, V> {
     }
 
     private void putVal(int hash, K key, V value, Node<K, V>[] table) {
-        int index = (hash % table.length);
+        int index = getIndexOf(hash, table.length);
         Node<K, V> node = table[index];
 
         if (node == null) {

@@ -50,8 +50,8 @@ public class Solution040 {
 
     public static void main(String[] args) {
         Solution040 solution040 = new Solution040();
-        int[] candidates = new int[]{2, 3, 5};
-        System.out.println(solution040.combinationSum(candidates, 8));
+        int[] candidates = new int[]{1,7,8,3,2,10};
+        System.out.println(solution040.combinationSum(candidates, 24));
 
     }
 

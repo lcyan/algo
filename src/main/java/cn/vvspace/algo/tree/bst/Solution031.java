@@ -1,4 +1,4 @@
-package cn.vvspace.algo.tree;
+package cn.vvspace.algo.tree.bst;
 
 import cn.vvspace.algo.base.TreeNode;
 

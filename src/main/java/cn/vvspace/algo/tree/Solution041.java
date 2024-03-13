@@ -19,20 +19,22 @@ public class Solution041 {
     private int result = Integer.MIN_VALUE;
 
     public int maxPathSum(TreeNode root) {
-        traverse(root);
+        oneSideMax(root);
         return result;
     }
 
 
-    public int traverse(TreeNode root) {
+    public int oneSideMax(TreeNode root) {
         if (root == null) {
             return 0;
         }
 
-        int leftMaxPathSum = Math.max(traverse(root.left), 0);
-        int rightMaxPathSum = Math.max(traverse(root.right), 0);
+        int leftMaxPathSum = Math.max(oneSideMax(root.left), 0);
+        int rightMaxPathSum = Math.max(oneSideMax(root.right), 0);
         result = Math.max(result, leftMaxPathSum + rightMaxPathSum + root.val);
 
         return Math.max(leftMaxPathSum, rightMaxPathSum) + root.val;
     }
+
+
 }

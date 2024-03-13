@@ -33,6 +33,7 @@ public class TreeTraverse {
             int sz = q.size();
             for (int i = 0; i < sz; i++) {
                 TreeNode cur = q.poll();
+                assert cur != null;
                 if (cur.left == null && cur.right == null) {
                     return depth;
                 }
@@ -49,6 +50,25 @@ public class TreeTraverse {
         }
 
         return depth;
+    }
+
+    void traverse(TreeNode root, int level) {
+        if (root == null) {
+            return;
+        }
+        System.out.println("level: " + level);
+        traverse(root.left, level + 1);
+        traverse(root.right, level + 1);
+    }
+
+    int count(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftCount = count(root.left);
+        int rightCount = count(root.right);
+        return leftCount + rightCount + 1;
     }
 
 }

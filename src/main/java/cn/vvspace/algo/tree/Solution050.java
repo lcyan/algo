@@ -36,7 +36,7 @@ public class Solution050 {
         return deserialize(nodes);
     }
 
-    /** 使用后序方式实现序列与反序列化 **/
+    /** 使用前序方式实现序列与反序列化 **/
     private void serialize(TreeNode root, StringBuilder sb) {
         if (root == null) {
             sb.append(NULL).append(SEP);

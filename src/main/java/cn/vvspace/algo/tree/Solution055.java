@@ -15,8 +15,6 @@ public class Solution055 {
         Node parent;
     }
 
-    ;
-
     Node lowestCommonAncestor(Node p, Node q) {
         Node a = p, b = q;
         while (a != b) {

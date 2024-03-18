@@ -22,19 +22,19 @@ import cn.vvspace.algo.base.TreeNode;
  */
 public class Solution057 {
 
+    private int sum = 0;
+
     public TreeNode convertBST(TreeNode root) {
-        traverse(root);
+        if (root == null) {
+            return null;
+        }
+
+        convertBST(root.right);
+        sum += root.val;
+        root.val = sum;
+        convertBST(root.left);
         return root;
     }
 
-    private int traverse(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
 
-        traverse(root.left);
-        int rightVal = traverse(root.right);
-        root.val = root.val + rightVal;
-        return root.val;
-    }
 }

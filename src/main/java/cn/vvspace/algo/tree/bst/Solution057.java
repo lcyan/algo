@@ -24,6 +24,7 @@ public class Solution057 {
 
     private int sum = 0;
 
+    // 对于一个节点来说，确实右子树都是比它大的元素，但问题是它的父节点也可能是比它大的元素
     public TreeNode convertBST(TreeNode root) {
         if (root == null) {
             return null;

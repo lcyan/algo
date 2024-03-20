@@ -59,4 +59,20 @@ public class Solution065 {
             res.add(node.val);
         }
     }
+
+    int depth;
+
+    private void dfs(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        depth++;
+        if (res.size() < depth) {
+            // 每一层记录一次
+            res.add(root.val);
+        }
+        dfs(root.right);
+        dfs(root.left);
+        depth--;
+    }
 }

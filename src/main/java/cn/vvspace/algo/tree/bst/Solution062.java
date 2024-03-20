@@ -2,6 +2,7 @@ package cn.vvspace.algo.tree.bst;
 
 import cn.vvspace.algo.base.TreeNode;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,14 +17,15 @@ public class Solution062 {
 
     public List<TreeNode> generateTrees(int n) {
         if (n == 0) {
-            return null;
+            return new ArrayList<>();
         }
-
         return build(1, n);
     }
 
     private List<TreeNode> build(int lo, int hi) {
         List<TreeNode> res = new LinkedList<>();
+
+        // base case
         if (lo > hi) {
             res.add(null);
             return res;

@@ -30,10 +30,12 @@ public class Solution071 {
 
         if (root.val > target) {
             traverse(root.left, target);
+            // 中序位置
             if (Math.abs(root.val - target) < Math.abs(res - target)) {
                 res = root.val;
             }
         } else {
+            // 中序位置
             if (Math.abs(root.val - target) < Math.abs(res - target)) {
                 res = root.val;
             }

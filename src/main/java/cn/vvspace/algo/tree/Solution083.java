@@ -50,19 +50,16 @@ public class Solution083 {
         Deque<TreeNode> q = new LinkedList<>();
         q.offer(root);
 
-
         while (!q.isEmpty()) {
             int sz = q.size();
             for (int i = 0; i < sz; i++) {
-                if (i == 0) {
-                    resVal = q.pop().val;
+                res = q.poll();
+                assert res != null;
+                if (res.right != null) {
+                    q.offer(res.right);
                 }
-                TreeNode cur = q.pop();
-                if (cur.left != null) {
-                    q.offer(cur.left);
-                }
-                if (cur.right != null) {
-                    q.offer(cur.right);
+                if (res.left != null) {
+                    q.offer(res.left);
                 }
             }
         }

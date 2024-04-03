@@ -16,10 +16,10 @@ public class Solution002 {
         ListNode p = head;
         while (p != null) {
             if (p.val < x) {
-                left.next = new ListNode(p.val);
+                left.next = p;
                 left = left.next;
             } else {
-                right.next = new ListNode(p.val);
+                right.next = p;
                 right = right.next;
             }
 

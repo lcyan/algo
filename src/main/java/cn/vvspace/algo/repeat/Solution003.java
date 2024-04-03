@@ -21,17 +21,14 @@ public class Solution003 {
         }
 
         while (!q.isEmpty()) {
-            int sz = q.size();
-            for (int i = 0; i < sz; i++) {
-                ListNode cur = q.poll();
-                p.next = cur;
-                assert cur != null;
-                if (cur.next != null) {
-                    q.offer(cur.next);
-                    cur.next = null;
-                }
-                p = p.next;
+            ListNode cur = q.poll();
+            p.next = cur;
+            assert cur != null;
+            if (cur.next != null) {
+                q.offer(cur.next);
+                cur.next = null;
             }
+            p = p.next;
         }
         return dummy.next;
     }

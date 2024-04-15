@@ -20,10 +20,10 @@ public class Solution006 {
 
     public static void main(String[] args) {
         ListNode list = ListNode.of(3, 2, 0, -4);
-        System.out.println(hasCycle(list));
+        System.out.println(new Solution006().hasCycle(list));
     }
 
-    public static boolean hasCycle(ListNode head) {
+    public  boolean hasCycle(ListNode head) {
         ListNode slow = head, fast = head;
 
         while (fast != null && fast.next != null) {

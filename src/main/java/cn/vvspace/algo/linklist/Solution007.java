@@ -21,11 +21,11 @@ public class Solution007 {
 
     public static void main(String[] args) {
         ListNode list = ListNode.of(3, 2, 0, -4);
-        ListNode listNode = hasCycle(list);
+        ListNode listNode = new Solution007().hasCycle(list);
         System.out.println(listNode);
     }
 
-    public static ListNode hasCycle(ListNode head) {
+    public  ListNode hasCycle(ListNode head) {
         ListNode slow = head, fast = head;
 
         while (fast != null && fast.next != null) {

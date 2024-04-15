@@ -21,12 +21,12 @@ public class Solution009 {
 
     public static void main(String[] args) {
         int[] nums = new int[]{0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-        int newLen = removeDuplicates(nums);
+        int newLen = new Solution009().removeDuplicates(nums);
         System.out.print(newLen + " -> ");
         System.out.println(Arrays.toString(nums));
     }
 
-    public static int removeDuplicates(int[] nums) {
+    public int removeDuplicates(int[] nums) {
         int len = nums.length;
         if (len == 0) {
             return 0;

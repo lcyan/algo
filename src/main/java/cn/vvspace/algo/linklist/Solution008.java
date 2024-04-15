@@ -20,13 +20,13 @@ public class Solution008 {
     public static void main(String[] args) {
         ListNode listA = ListNode.of(4, 1, 8, 4, 5);
         ListNode listB = ListNode.of(5, 6, 1, 8, 4, 5);
-        ListNode listNode = getIntersectionNode(listA, listB);
-        ListNode listNode2 = getIntersectionNodeV2(listA, listB);
+        ListNode listNode = new Solution008().getIntersectionNode(listA, listB);
+        ListNode listNode2 = new Solution008().getIntersectionNodeV2(listA, listB);
         System.out.println(listNode);
         System.out.println(listNode2);
     }
 
-    public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         int lenA = 0, lenB = 0;
 
         for (ListNode p = headA; p != null; p = p.next) {
@@ -59,7 +59,7 @@ public class Solution008 {
     // a -> b -> c -> d -> e
     // a -> b ->d -> e
 
-    public static ListNode getIntersectionNodeV2(ListNode headA, ListNode headB) {
+    public ListNode getIntersectionNodeV2(ListNode headA, ListNode headB) {
         ListNode p1 = headA, p2 = headB;
 
         while (p1 != p2) {

@@ -22,7 +22,9 @@ public class Solution001 {
         }
 
         depth++;
-        res = Math.max(depth, res);
+        if (root.left == null && root.right == null) {
+            res = Math.max(depth, res);
+        }
         traverse(root.left);
         traverse(root.right);
         depth--;

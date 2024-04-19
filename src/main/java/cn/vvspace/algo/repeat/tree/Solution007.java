@@ -35,8 +35,8 @@ public class Solution007 {
         int res = Integer.MAX_VALUE;
         for (int coin : coins) {
             // 计算子问题的结果
-            int subProblem = coinChange(coins, amount - coin);
-            // 子问题误解，直接跳过
+            int subProblem = dp(coins, amount - coin);
+            // 子问题无解，直接跳过
             if (subProblem == -1) {
                 continue;
             }

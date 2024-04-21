@@ -1,6 +1,7 @@
 package cn.vvspace.algo.repeat.backtrack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,6 +19,7 @@ public class Solution007 {
     }
 
     public List<List<Integer>> permuteUnique(int[] nums) {
+        Arrays.sort(nums);
         boolean[] used = new boolean[nums.length];
         backtrack(nums, used);
         return res;

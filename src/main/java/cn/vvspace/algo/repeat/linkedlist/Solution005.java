@@ -1,4 +1,4 @@
-package cn.vvspace.algo.repeat;
+package cn.vvspace.algo.repeat.linkedlist;
 
 import cn.vvspace.algo.base.ListNode;
 

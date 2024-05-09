@@ -12,8 +12,6 @@ import java.util.Map;
  */
 public class Solution002 {
 
-    public static void main(String[] args) {
-    }
 
     // 给定一个已排序的链表的头 head ， 删除原始链表中所有重复数字的节点，只留下不同的数字 。返回 已排序的链表 。
     // head = [1,2,3,3,4,4,5] => [1, 2, 5]
@@ -44,24 +42,36 @@ public class Solution002 {
         return dummy.next;
     }
 
-    // 递归解法
-    // 定义：输入一条单链表头结点，返回去重之后的单链表头结点
-    public ListNode deleteDuplicatesV1(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
+
+    ListNode successor = null;
+
+    public static void main(String[] args) {
+        ListNode head = ListNode.of(1, 2, 3, 4, 5);
+        System.out.println(new Solution002().reverse(head));
+    }
+
+    public ListNode deleteDuplicatesV4(ListNode head) {
+        ListNode dummy = new ListNode(-1), q = head;
+        ListNode p = dummy;
+
+        while (q != null) {
+            if (q.next != null && q.val == q.next.val) {
+                while (q.next != null && q.val == q.next.val) {
+                    q = q.next;
+                }
+                q = q.next;
+
+                if (q == null) {
+                    p.next = null;
+                }
+            } else {
+                p.next = q;
+                q = q.next;
+                p = p.next;
+            }
         }
 
-        if (head.val != head.next.val) {
-            // 如果头结点和身后节点的值不同，则对之后的链表去重即可
-            head.next = deleteDuplicates(head.next);
-            return head;
-        }
-
-        while (head.next != null && head.val == head.next.val) {
-            head = head.next;
-        }
-
-        return deleteDuplicates(head.next);
+        return dummy.next;
     }
 
 
@@ -103,20 +113,90 @@ public class Solution002 {
 
     }
 
-    // 92. 反转链表 II
-    // 给你单链表的头指针 head 和两个整数 left 和 right ，其中 left <= right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。
-    public ListNode reverseBetween(ListNode head, int left, int right) {
-        return null;
+
+    public ListNode deleteDuplicatesUnsortedV6(ListNode head) {
+        Map<Integer, Integer> cnt = new HashMap<>();
+        ListNode p = head;
+        while (p != null) {
+            cnt.put(p.val, cnt.getOrDefault(p.val, 0) + 1);
+            p = p.next;
+        }
+
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        p = dummy;
+
+        while (p != null) {
+            ListNode unique = p;
+            while (unique != null && cnt.get(unique.val) > 1) {
+                unique = unique.next;
+            }
+            p.next = unique;
+            p = p.next;
+        }
+
+        return dummy.next;
     }
 
-    public ListNode reverse(ListNode head) {
+
+    // 递归解法
+    // 定义：输入一条单链表头结点，返回去重之后的单链表头结点
+    public ListNode deleteDuplicatesV1(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
 
-        ListNode last = reverse(head);
-        head.next.next = head;
+        if (head.val != head.next.val) {
+            // 如果头结点和身后节点的值不同，则对之后的链表去重即可
+            head.next = deleteDuplicatesV1(head.next);
+            return head;
+        }
+
+        while (head.next != null && head.val == head.next.val) {
+            head = head.next;
+        }
+
+        return deleteDuplicatesV1(head.next);
+    }
+
+    // 函数定义：输入一个节点 head，将「以 head 为起点」的链表反转，并返回反转之后的头结点。
+    public ListNode reverse(ListNode head) {
+        if (head == null || head.next == null) {
+            return null;
+        }
+
+        ListNode last = reverse(head.next);
+        head.next.next = last;
         head.next = null;
         return last;
     }
+
+
+    // 反转以 head 为起点的 n 个节点，返回新的头结点
+    private ListNode reverseN(ListNode head, int n) {
+        if (n == 1) {
+            successor = head.next;
+            return head;
+        }
+
+        ListNode last = reverseN(head.next, n - 1);
+        head.next.next = head;
+        head.next = successor;
+        return last;
+    }
+
+    // 反转链表的一部分
+
+    private ListNode reverseBetween(ListNode head, int m, int n) {
+
+        if (m == 1) {
+            return reverseN(head, n);
+        }
+
+        head.next = reverseBetween(head.next, m - 1, n - 1);
+        return head;
+    }
+
 }
+
+

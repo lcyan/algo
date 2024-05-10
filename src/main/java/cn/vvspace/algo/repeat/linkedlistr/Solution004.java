@@ -11,10 +11,7 @@ public class Solution004 {
 
     ListNode left;
 
-    public static void main(String[] args) {
-        ListNode head = new ListNode(1, new ListNode(2, new ListNode(3)));
-        new Solution004().traverse(head);
-    }
+
 
     public String palindrome(String s, int left, int right) {
         if (left >= 0 && right < s.length() && s.charAt(left) != s.charAt(right)) {
@@ -45,6 +42,76 @@ public class Solution004 {
     public boolean isPalindrome(ListNode head) {
         left = head;
         return traverse(head);
+    }
+
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1, new ListNode(2));
+        System.out.println(new Solution004().isPalindromeV1(head));
+    }
+
+    /**
+     * 1、使用快慢指针使slow指向中间结点
+     * 2、反转以slow位head的后续链表
+     * 3、比对左半边和右半边的列表
+     *
+     * @param head head
+     * @return isPalindrome
+     */
+
+    public boolean isPalindromeV1(ListNode head) {
+
+        if (head == null) {
+            return false;
+        }
+
+        ListNode slow, fast;
+        slow = fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // 说明链表长度为奇数
+        if (fast != null) {
+            slow = slow.next;
+        }
+
+        ListNode left = head;
+        ListNode right = reverse(slow);
+
+        while (right != null) {
+            if (left.val != right.val) {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+
+        return true;
+    }
+
+    private ListNode reverseV1(ListNode slow) {
+        ListNode prev = null, cur = slow, next;
+
+        while (cur != null) {
+            next = cur.next;
+            cur.next = prev;
+
+            prev = cur;
+            cur = next;
+        }
+
+        return prev;
+    }
+
+    private ListNode reverse(ListNode slow) {
+        if (slow == null || slow.next == null) {
+            return slow;
+        }
+        ListNode last = reverse(slow.next);
+        slow.next.next = slow;
+        slow.next = null;
+        return last;
     }
 
     private boolean traverse(ListNode right) {

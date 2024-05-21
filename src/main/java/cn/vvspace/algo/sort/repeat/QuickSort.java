@@ -17,7 +17,7 @@ public class QuickSort {
 
     public static void main(String[] args) {
         int[] nums = new int[]{1, 4, 5, 2, 3};
-        new QuickSort().sort(nums);
+        new QuickSort().quickSortV1(nums, 0, nums.length - 1);
         System.out.println(Arrays.toString(nums));
     }
 
@@ -34,6 +34,20 @@ public class QuickSort {
         int pivot = partition(nums, left, right);
         quickSort(nums, left, pivot - 1);
         quickSort(nums, pivot + 1, right);
+    }
+
+    // 尾递归优化
+    public void quickSortV1(int[] nums, int left, int right) {
+        while (left < right) {
+            int pivot = partition(nums, left, right);
+            if (pivot - left < right - pivot) {
+                quickSortV1(nums, left, pivot - 1);
+                left = pivot + 1;
+            } else {
+                quickSortV1(nums, pivot + 1, right);
+                right = pivot - 1;
+            }
+        }
     }
 
     // 左子数组任意元素 <= 基准数 <= 右子数组任意元素

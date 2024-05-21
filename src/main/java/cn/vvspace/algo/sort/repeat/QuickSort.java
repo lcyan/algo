@@ -21,11 +21,12 @@ public class QuickSort {
         System.out.println(Arrays.toString(nums));
     }
 
+
     public void sort(int[] nums) {
         quickSort(nums, 0, nums.length - 1);
     }
 
-    private void quickSort(int[] nums, int left, int right) {
+    public void quickSort(int[] nums, int left, int right) {
         if (left >= right) {
             return;
         }
@@ -38,24 +39,25 @@ public class QuickSort {
     // 左子数组任意元素 <= 基准数 <= 右子数组任意元素
     public int partition(int[] nums, int left, int right) {
         int i = left, j = right;
+
         while (i < j) {
             while (i < j && nums[j] > nums[left]) {
                 j--;
             }
-
             while (i < j && nums[i] < nums[left]) {
                 i++;
             }
             swap(nums, i, j);
         }
-        swap(nums, i, left);
+        swap(nums, left, i);
         return i;
     }
 
-    public void swap(int[] nums, int i, int j) {
-        int tmp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = tmp;
 
+    public void swap(int[] nums, int left, int right) {
+        int tmp = nums[left];
+        nums[left] = nums[right];
+        nums[right] = tmp;
     }
+
 }

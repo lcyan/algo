@@ -51,6 +51,7 @@ public class QuickSort {
     }
 
     // 左子数组任意元素 <= 基准数 <= 右子数组任意元素
+    // 当我们以最左端元素为基准数时，必须先“从右往左查找”再“从左往右查找”
     public int partition(int[] nums, int left, int right) {
         int i = left, j = right;
 

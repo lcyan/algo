@@ -3,7 +3,7 @@ package cn.vvspace.algo.sort.repeat;
 import java.util.Arrays;
 
 /**
- * 计数排序（counting sort）通过统计元素数量来实现排序，通常应用于整数数组。 <b>计数排序只适用于非负整数</b>
+ * 计数排序（counting sort）通过统计元素数量来实现排序，通常应用于整数数组。 <b>计数排序只适用于非负整数</b>, 适用于n较大(元素数量),m(元素的最大值)较小的情况
  * <p>
  * 时间复杂度为O(m+n)
  * <p>

@@ -59,6 +59,7 @@ public class HeapSort {
 
     public void heapSort(int[] nums) {
         // 建堆操作：堆化除叶节点以外的其他所有节点
+        // parent = (i-1)/2 => i为下标
         for (int i = nums.length / 2 - 1; i >= 0; i--) {
             siftDown(nums, nums.length, i);
         }

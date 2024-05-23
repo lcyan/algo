@@ -23,44 +23,42 @@ public class MergeSort {
         System.out.println(Arrays.toString(nums));
     }
 
-    public void mergeSort(int[] nums, int left, int right) {
+    private void mergeSort(int[] nums, int left, int right) {
         if (left >= right) {
             return;
         }
         int mid = left + (right - left) / 2;
-        mergeSort(nums, 0, mid);
+        mergeSort(nums, left, mid);
         mergeSort(nums, mid + 1, right);
         merge(nums, left, mid, right);
     }
 
+    private void merge(int[] nums, int left, int mid, int right) {
+        int i = left, j = mid + 1;
+        int len = right - left + 1;
+        int[] tmp = new int[len];
 
-    public void merge(int[] nums, int left, int mid, int right) {
-        int i = left, j = mid + 1, k = 0;
-        int[] tmp = new int[right - left + 1];
-
+        int k = 0;
         while (i <= mid && j <= right) {
-            if (nums[i] <= nums[j]) {
-                tmp[k++] = nums[i];
-                i++;
+            if (nums[i] > nums[j]) {
+                tmp[k++] = nums[j++];
             } else {
-                tmp[k++] = nums[j];
-                j++;
+                tmp[k++] = nums[i++];
             }
         }
 
         while (i <= mid) {
-            tmp[k++] = nums[i];
-            i++;
+            tmp[k++] = nums[i++];
         }
 
         while (j <= right) {
-            tmp[k++] = nums[j];
-            j++;
+            tmp[k++] = nums[j++];
         }
 
-        for (k = 0; k < tmp.length; k++) {
-            nums[left + k] = tmp[k];
+        for (int l = 0; l < len; l++) {
+            nums[l + left] = tmp[l];
         }
     }
+
 
 }

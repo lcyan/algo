@@ -21,6 +21,7 @@ public class BubbleSort {
         System.out.println(Arrays.toString(nums));
     }
 
+
     public void sort(int[] nums) {
         for (int i = nums.length - 1; i > 0; i--) {
             boolean flag = false;

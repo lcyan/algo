@@ -19,13 +19,9 @@ public class HeapSort {
         System.out.println(Arrays.toString(nums));
     }
 
-
-    /* 堆的长度为 n ，从节点 i 开始，从顶至底堆化 */
     public void siftDown(int[] nums, int n, int i) {
         while (true) {
-            int left = 2 * i + 1;
-            int right = 2 * i + 2;
-            int mi = i;
+            int left = 2 * i + 1, right = 2 * i + 2, mi = i;
             if (left < n && nums[left] > nums[mi]) {
                 mi = left;
             }
@@ -34,7 +30,7 @@ public class HeapSort {
                 mi = right;
             }
 
-            if (mi == i) {
+            if (i == mi) {
                 break;
             }
 
@@ -44,6 +40,7 @@ public class HeapSort {
             i = mi;
         }
     }
+
 
     /**
      * 1. 输入数组并建立大顶堆。完成后，最大元素位于堆顶。
@@ -56,21 +53,18 @@ public class HeapSort {
      *
      * @param nums nums
      */
-
-    public void heapSort(int[] nums) {
-        // 建堆操作：堆化除叶节点以外的其他所有节点
-        // parent = (i-1)/2 => i为下标
+    private void heapSort(int[] nums) {
         for (int i = nums.length / 2 - 1; i >= 0; i--) {
             siftDown(nums, nums.length, i);
         }
-        // 从堆中提取最大元素，循环 n-1 轮
-        for (int i = nums.length - 1; i > 0; i--) {
-            // 交换根节点与最右叶节点（交换首元素与尾元素）
+
+        for (int i = nums.length - 1; i >= 0; i--) {
             int tmp = nums[0];
             nums[0] = nums[i];
             nums[i] = tmp;
-            // 以根节点为起点，从顶至底进行堆化
+
             siftDown(nums, i, 0);
         }
+
     }
 }

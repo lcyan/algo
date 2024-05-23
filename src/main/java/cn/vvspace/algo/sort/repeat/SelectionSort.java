@@ -21,15 +21,15 @@ public class SelectionSort {
 
     public void sort(int[] nums) {
         for (int i = 0; i < nums.length; i++) {
-            int k = i;
+            int mi = i;
             for (int j = i + 1; j < nums.length; j++) {
-                if (nums[j] < nums[k]) {
-                    k = j;
+                if (nums[j] < nums[mi]) {
+                    mi = j;
                 }
             }
             int tmp = nums[i];
-            nums[i] = nums[k];
-            nums[k] = tmp;
+            nums[i] = nums[mi];
+            nums[mi] = tmp;
         }
     }
 }

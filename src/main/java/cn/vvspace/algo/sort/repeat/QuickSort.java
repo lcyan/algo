@@ -17,7 +17,7 @@ public class QuickSort {
 
     public static void main(String[] args) {
         int[] nums = new int[]{1, 4, 5, 2, 3};
-        new QuickSort().quickSortV1(nums, 0, nums.length - 1);
+        new QuickSort().sort(nums);
         System.out.println(Arrays.toString(nums));
     }
 
@@ -26,53 +26,37 @@ public class QuickSort {
         quickSort(nums, 0, nums.length - 1);
     }
 
-    public void quickSort(int[] nums, int left, int right) {
-        if (left >= right) {
+    private void quickSort(int[] nums, int left, int rigfht) {
+        if (left >= rigfht) {
             return;
         }
 
-        int pivot = partition(nums, left, right);
-        quickSort(nums, left, pivot - 1);
-        quickSort(nums, pivot + 1, right);
+        int mid = partition(nums, left, rigfht);
+        quickSort(nums, left, mid);
+        quickSort(nums, mid + 1, rigfht);
     }
 
-    // 尾递归优化
-    public void quickSortV1(int[] nums, int left, int right) {
-        while (left < right) {
-            int pivot = partition(nums, left, right);
-            if (pivot - left < right - pivot) {
-                quickSortV1(nums, left, pivot - 1);
-                left = pivot + 1;
-            } else {
-                quickSortV1(nums, pivot + 1, right);
-                right = pivot - 1;
-            }
-        }
-    }
-
-    // 左子数组任意元素 <= 基准数 <= 右子数组任意元素
-    // 当我们以最左端元素为基准数时，必须先“从右往左查找”再“从左往右查找”
-    public int partition(int[] nums, int left, int right) {
-        int i = left, j = right;
-
+    private int partition(int[] nums, int left, int rigfht) {
+        int i = left, j = rigfht;
         while (i < j) {
             while (i < j && nums[j] > nums[left]) {
                 j--;
             }
-            while (i < j && nums[i] < nums[left]) {
+            while (i < j && nums[i] < nums.length) {
                 i++;
             }
+
             swap(nums, i, j);
         }
-        swap(nums, left, i);
+        swap(nums, i, left);
         return i;
     }
 
-
-    public void swap(int[] nums, int left, int right) {
-        int tmp = nums[left];
-        nums[left] = nums[right];
-        nums[right] = tmp;
+    private void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
     }
+
 
 }

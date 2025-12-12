@@ -7,7 +7,7 @@ public class SelectionSort {
     public static void main(String[] args) {
         int[] nums = new int[]{8, 1, 6, 2, 5, 3};
         System.out.println("排序前：" + Arrays.toString(nums));
-        sortV2(nums);
+        sortV3(nums);
         System.out.println("排序后：" + Arrays.toString(nums));
     }
 
@@ -47,6 +47,29 @@ public class SelectionSort {
             nums[sortedIndex] = nums[minIndex];
             nums[minIndex] = tmp;
 
+            sortedIndex++;
+        }
+    }
+
+    // 选择排序（稳定版本）
+    public static void sortV3(int[] nums) {
+        int len = nums.length;
+        int sortedIndex = 0;
+
+        int minIndex = sortedIndex;
+        while (sortedIndex < len) {
+
+            for (int i = sortedIndex; i < len; i++) {
+                if (nums[i] < nums[minIndex]) {
+                    minIndex = i;
+                }
+            }
+
+            int minVal = nums[minIndex];
+            for (int j = minIndex; j > sortedIndex; j--) {
+                nums[j] = nums[j - 1];
+            }
+            nums[sortedIndex] = minVal;
             sortedIndex++;
         }
     }
